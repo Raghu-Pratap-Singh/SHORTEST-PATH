@@ -24,3 +24,237 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+#options {
+  display: flex;
+  position: relative;
+  height: 8vh;
+  width: 100vw;
+  background-color: #ffffff;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.item{
+  color: black;
+  z-index: 1;
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 25%;
+  background-color: rgb(134, 255, 187);
+  /* border-radius: 6px; */
+  font-size: clamp(11px,2vw,20px);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-weight: 500; /* or 500 for medium softness */
+letter-spacing: 2px;
+  transition-duration: 0.2s;
+  padding: 3px;
+  
+}
+
+.item::before{
+  z-index: -1;
+  position: absolute;
+  content:"";
+  left:0px;
+  bottom:0px;
+  background-color: rgb(4, 131, 0);
+  width: 100%;
+  height: 0%;
+  /* border-radius: 6px; */
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+
+}
+
+.item:hover::before{
+  height: 15%;
+}
+
+.item:hover{
+  /* background-color: hsl(118, 100%, 78%); */
+  color:  rgb(4, 131, 0);
+  cursor: pointer;
+  
+}
+
+#Container{
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 86.9vh;
+  max-height: 100vh;
+  background-color: rgb(0, 0, 0);
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#MAP{
+  display: flex;
+  position: relative;
+  width: clamp(320px,70vw,70vh);
+  height: clamp(320px,70vw,70vh);
+  
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  row-gap: 0px;
+  
+  flex-wrap: wrap;
+  border-width: 15px;
+  border-style:groove;
+  border-color: rgb(39, 255, 187);
+  
+}
+
+.block{
+  position: relative;
+  display: inline-block;
+  width: 5%;
+  height:5%;
+  background-color: rgb(255, 255, 255);
+  border-width: 2px;
+  border-color: #0a0a0a;
+  transition-duration: 0s;
+}
+
+.block:hover{
+  background-color: rgb(200, 200, 200);
+  
+}
+
+#start{
+  z-index: 0;
+  color: #0a0a0a;
+  position: relative;
+  width: 90%;
+  height: 5vh;
+  background-color: rgb(134, 255, 187);
+  left: 5vw;
+  bottom: 2vh;
+  letter-spacing: clamp(2px,1vw,15px);
+  font-size: clamp(10px,5vw,20px);
+  font-weight: 500;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+}
+#start::before{
+  z-index: -1;
+  position: absolute;
+  content:"";
+  left:0px;
+  bottom:0px;
+  background-color: rgb(0, 131, 28);
+  width: 100%;
+  height: 0%;
+  /* border-radius: 6px; */
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+border-radius: 8px;
+
+
+}
+
+#start:hover::before{
+  height: 100%;
+}
+
+#start:hover{
+  /* background-color: hsl(118, 100%, 78%); */
+  color:  rgb(255, 255, 255);
+  cursor: pointer;
+  
+}
+
+#cover{
+  position: fixed;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: rgb(0, 0, 0);
+  background-image: url("back.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#cover h1{
+  text-align: center;
+  position: relative;
+  color: #00ff66;
+  font-family:monospace;
+  font-size: 40px;
+  letter-spacing: 5px;
+  font-weight: 600;
+  top: 30vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  
+  
+  
+}
+
+#instructions{
+  position: fixed;
+  display:flex;
+  z-index: 2;
+  width: 100vw;
+  /* left: 0.5vw; */
+  height: 100vh;
+  /* top: 0.5vh;/ */
+  background-color: rgba(0, 255, 102, 0.5);
+  backdrop-filter: blur(2px);
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.i {
+  position: relative;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  display: flex;
+  width: 45%;
+  height: 40%;
+  background-color: rgb(10, 10, 10,0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  text-align: center;
+  font-size: clamp(10px,2vw,20px);
+  /* padding-left: 5px; */
+}
+
+.i h1{
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  top: 0px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  font-size: 24px;
+  text-align: center;
+  background-color: #000000;
+}
+#confirm{
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 10%;
+  background-color: rgb(64, 0, 255);
+  font-size: 28px;
+  border-radius: 10px;
+  transition-duration: 0.2s;
+}
+#confirm:hover{
+  background-color: rgb(13, 1, 48);
+}
