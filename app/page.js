@@ -51,9 +51,13 @@ function Page() {
 
     if (stat === 0 && target.style.backgroundColor !== "blue" && target.style.backgroundColor !== "red") {
       target.style.backgroundColor = "yellow";
+      target.style.boxShadow = "inset 0px 0px 5px black";
+      
       mat[i][j] = -1;
     } else if (stat === 1 && src < 1 && target.style.backgroundColor !== "yellow" && target.style.backgroundColor !== "red") {
       target.style.backgroundColor = "blue";
+      target.style.boxShadow = "inset 0px 0px 5px black";
+      
       mat[i][j] = 1;
       setSx(i)
       setSy(j)
@@ -61,6 +65,8 @@ function Page() {
       setStat(-1);
     } else if (stat === 2 && des < 1 && target.style.backgroundColor !== "yellow" && target.style.backgroundColor !== "blue") {
       target.style.backgroundColor = "red";
+      target.style.boxShadow = "inset 0px 0px 5px black";
+      
       mat[i][j] = 2;
       setEx(i)
       setEy(j)
@@ -231,10 +237,15 @@ function Page() {
   }
 
   async function animatePath(grid, trupath) {
+    let k = 0
     for (let i = 1; i < trupath.length - 1; i++) {
       const [a, b] = trupath[i];
       await new Promise(resolve => setTimeout(resolve, 100));
+      k+=1
+      setLen(k)
       grid[a][b].style.backgroundColor = "rgb(0, 255, 55)";
+      grid[a][b].style.boxShadow = "inset 0px 0px 8px rgb(0, 0, 0)";
+
     }
   }
 
@@ -251,10 +262,10 @@ function Page() {
     
   }
   // GIRD CREATED WHERE WE HAVE STORED REFERENCE TO EACH BLOCK IN TERMS OF ROW AND COL
-
+  const [len,setLen] = useState(0)
   return (
     <>
-
+      <div id="screen">Path length : {len}</div>
       <div id="cover">
         <h1>SHORTEST</h1>
         <h1>PATH</h1>
@@ -292,10 +303,13 @@ function Page() {
               for (let j = 0; j < 20; j++) {
 
                 grid[i][j].style.backgroundColor = "white"
+                grid[i][j].style.boxShadow = "none";
                 // Reset all custom classes, preserve hover styling
                 mat[i][j] = 0;
+                
               }
             }
+            setLen(0)
             setSrc(0);
             setDes(0);
             setSx(-1);

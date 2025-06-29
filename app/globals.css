@@ -124,6 +124,7 @@ letter-spacing: 2px;
   border-width: 2px;
   border-color: #0a0a0a;
   transition-duration: 0s;
+  
 }
 
 .block:hover{
@@ -261,4 +262,22 @@ border-radius: 8px;
 }
 #confirm:hover{
   background-color: rgb(13, 1, 48);
+}
+
+#screen{
+  position: fixed;
+  display: inline-block;
+  width: 100vw;
+  height: 50px;
+  /* background-color: aqua; */
+  top: 60px;
+  text-align: center;
+  z-index: 1;
+  font-size: 30px;
+  font-family:cursive;
+  text-shadow: -4px 3px 2px black;
+  font-weight: 100;
+  letter-spacing: 3px;
+  
+
 }
