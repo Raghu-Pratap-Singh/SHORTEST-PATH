@@ -257,6 +257,7 @@ border-radius: 8px;
   font-size: 28px;
   border-radius: 10px;
   transition-duration: 0.2s;
+  bottom: 5vh;
 }
 #confirm:hover{
   background-color: rgb(13, 1, 48);
