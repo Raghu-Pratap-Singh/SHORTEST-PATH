@@ -20,7 +20,7 @@
 }
 
 body {
-  background: var(--background);
+  background: rgb(2,182,140);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -88,10 +88,11 @@ letter-spacing: 2px;
   width: 100vw;
   height: 86.9vh;
   max-height: 100vh;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(2, 182, 140);
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  
 }
 
 #MAP{
@@ -109,6 +110,8 @@ letter-spacing: 2px;
   border-width: 15px;
   border-style:groove;
   border-color: rgb(39, 255, 187);
+
+  box-shadow: 0px 0px 30px black;
   
 }
 
