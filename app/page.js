@@ -298,7 +298,12 @@ function Page() {
             }
             setSrc(0);
             setDes(0);
+            setSx(-1);
+            setSy(-1);
+            setEx(-1);
+            setEy(-1);
             setStat(-1);
+            console.log(mat)
           }}
 
         >
