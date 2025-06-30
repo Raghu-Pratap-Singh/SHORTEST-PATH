@@ -259,6 +259,21 @@ function Page() {
       grid[a][b].style.boxShadow = "inset 0px 0px 8px rgb(0, 0, 0)";
 
     }
+    if (k>0){
+
+      gsap.fromTo(".block",{
+        borderColor:"rgb(141, 255, 166)",
+        
+      },{
+        delay:0.4,
+        duration:3,
+        borderColor:"black",
+        
+      })
+      
+    }
+
+    
     return k
     
   }
@@ -704,6 +719,15 @@ function Page() {
           
           
         });
+        
+      gsap.fromTo(".block",{
+        borderColor:"red"
+      },{
+        delay:0.4,
+        duration:3,
+        borderColor:"black"
+      })
+    
       }
       else{
         toast("Path found...", {
@@ -757,6 +781,13 @@ function Page() {
           
           
         })
+        gsap.fromTo(".block",{
+        borderColor:"red"
+      },{
+        delay:0.4,
+        duration:3,
+        borderColor:"black"
+      })
     }
   }}
 >
