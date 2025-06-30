@@ -8,23 +8,36 @@ function Page() {
   const [isObstacle, setob] = useState(false);
   useGSAP(() => {
     let t = gsap.timeline()
-    t.from("#cover h1", {
-      y: 20,
-      delay: 0.5,
-      opacity: 0,
-      duration: 1.4,
-      stagger: -0.3
+    t.from("#flex1 p",{
+      delay:0.6,
+      duration:0.7,
+      y:"-300%",
+      opacity:0,
+      stagger:0.09,
+      color:"white"
     })
-    t.to("#cover", {
-      delay: 1.7,
-      duration: 2,
-      opacity: 0,
-      ease: "power3.out"
+    t.from("#flex2 p",{
+      delay:-0.9,
+      duration:0.7,
+      x:"300%",
+      opacity:0,
+      stagger:0.09,
+      color:"white"
     })
-
-    t.to("#cover", {
-      delay: -0.8,
-      zIndex: -2,
+    t.from("#flex3",{
+      duration:0.5,
+      ease:"power4.in",
+      x:"100%"
+    })
+    t.to("#cover",{
+      opacity:0,
+      duration:2,
+      delay:0.4,
+      
+    })
+    t.to("#cover",{
+      
+      zIndex:-3
     })
   })
   const mapref = useRef();
@@ -296,9 +309,32 @@ function Page() {
     <>
       <div id="screen">Path length : {len}</div>
       <div id="cover">
-        <h1>SHORTEST</h1>
-        <h1>PATH</h1>
-        <h1>FINDER</h1>
+        <div id="flex1">
+          <p>S</p>
+          <p>H</p>
+          <p>O</p>
+          <p>R</p>
+          <p>T</p>
+          <p>E</p>
+          <p>S</p>
+          <p>T</p>
+        </div>
+
+        <div id="flex2">
+          <p>P</p>
+          <p>A</p>
+          <p>T</p>
+          <p>H</p>
+        </div>
+
+        <div id="flex3">
+          <p>F</p>
+          <p>I</p>
+          <p>N</p>
+          <p>D</p>
+          <p>E</p>
+          <p>R</p>
+        </div>
       </div>
       <div id="instructions">
         <div className="i">
