@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Page() {
   useGSAP(() => {
     let t = gsap.timeline()
@@ -177,6 +179,12 @@ function Page() {
       }
     }
   }
+
+  function getDistance(x1, y1, x2, y2) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  return Math.sqrt(dx * dx + dy * dy);
+}
   function dijkstraPrinting(grid, matrix, sx, sy, ex, ey) {
     const n = matrix.length;
     const distance = Array.from({ length: n }, () => Array(n).fill(1e9));
@@ -207,10 +215,11 @@ function Page() {
 
       for (const [x, y] of directions) {
         if (x >= 0 && y >= 0 && x < n && y < n) {
-          if (matrix[x][y] !== -1 && dis + 1 < distance[x][y]) {
-            distance[x][y] = dis + 1;
+          let new_dis = dis + getDistance(i,j,x,y)
+          if (matrix[x][y] !== -1 &&  new_dis< distance[x][y]) {
+            distance[x][y] = new_dis;
             parent[x][y] = [i, j];
-            heap.push([dis + 1, x, y]);
+            heap.push([new_dis, x, y]);
           }
         }
       }
@@ -230,7 +239,7 @@ function Page() {
     path.push([sx, sy]);
     const trupath = path.reverse();
 
-    animatePath(grid, trupath);
+    return animatePath(grid, trupath);
 
 
 
@@ -238,7 +247,9 @@ function Page() {
 
   async function animatePath(grid, trupath) {
     let k = 0
+    
     for (let i = 1; i < trupath.length - 1; i++) {
+      
       const [a, b] = trupath[i];
       await new Promise(resolve => setTimeout(resolve, 100));
       k+=1
@@ -247,6 +258,8 @@ function Page() {
       grid[a][b].style.boxShadow = "inset 0px 0px 8px rgb(0, 0, 0)";
 
     }
+    return k
+    
   }
 
   function starter() {
@@ -665,11 +678,32 @@ function Page() {
         </div>
 
       </div>
-      <button id="start" onClick={() => {
-        if (sx != -1 && sy != -1 && ex != -1 && ey != -1) {
-          dijkstraPrinting(gridRef.current, matRef.current, sx, sy, ex, ey)
-        }
-      }}>FIND SHORTEST PATH</button>
+      <button
+  id="start"
+  onClick={async () => {
+    if (sx !== -1 && sy !== -1 && ex !== -1 && ey !== -1) {
+      setLen(0);
+      const temp = await dijkstraPrinting(gridRef.current, matRef.current, sx, sy, ex, ey);
+      if (temp < 1) {
+        toast("No valid Path...", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          
+        });
+      }
+    }
+  }}
+>
+  FIND SHORTEST PATH
+</button>
+<ToastContainer />
+
     </>
   )
 }
