@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function Page() {
+  const [isObstacle, setob] = useState(false);
   useGSAP(() => {
     let t = gsap.timeline()
     t.from("#cover h1", {
@@ -54,7 +55,7 @@ function Page() {
     if (stat === 0 && target.style.backgroundColor !== "blue" && target.style.backgroundColor !== "red") {
       target.style.backgroundColor = "yellow";
       target.style.boxShadow = "inset 0px 0px 5px black";
-      
+      setob(true)
       mat[i][j] = -1;
     } else if (stat === 1 && src < 1 && target.style.backgroundColor !== "yellow" && target.style.backgroundColor !== "red") {
       target.style.backgroundColor = "blue";
@@ -319,9 +320,11 @@ function Page() {
                 grid[i][j].style.boxShadow = "none";
                 // Reset all custom classes, preserve hover styling
                 mat[i][j] = 0;
+
                 
               }
             }
+            setob(false)
             setLen(0)
             setSrc(0);
             setDes(0);
@@ -683,20 +686,77 @@ function Page() {
   onClick={async () => {
     if (sx !== -1 && sy !== -1 && ex !== -1 && ey !== -1) {
       setLen(0);
+
       const temp = await dijkstraPrinting(gridRef.current, matRef.current, sx, sy, ex, ey);
       if (temp < 1) {
         toast("No valid Path...", {
           position: "top-center",
           autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: "colored",
+          ease:"power3.out",
+          type:"error",
+          
+          
           
         });
       }
+      else{
+        toast("Path found...", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          ease:"power3.out",
+          type:"success",
+          
+          
+          
+        })
+        if (isObstacle == false){
+
+          toast.info("Try adding obstacles next time...", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            ease:"power3.out",
+            
+            
+            
+            
+          })
+        }
+      }
+    }
+    else{
+      toast.info("Select a starting point and a destination at least...", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          ease:"power3.out",
+          
+          
+          
+          
+        })
     }
   }}
 >
