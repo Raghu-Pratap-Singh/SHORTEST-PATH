@@ -284,6 +284,7 @@ function Page() {
         
       })
       
+      
     }
 
     
@@ -388,17 +389,17 @@ function Page() {
           }}
 
         >
-          Reset
+          Reset 🔄
         </button>
         <button className="item" onClick={() => {
           setStat(0)
-        }}>Add Obstacles</button>
+        }}>Add Obstacles <div id="obst"></div></button>
         <button className="item" onClick={() => {
           setStat(1)
-        }}>Add Starting Point</button>
+        }}>Add Starting Point <div id="sta"></div></button>
         <button className="item" onClick={() => {
           setStat(2)
-        }}>Add Destination</button>
+        }}>Add Destination <div id="end"></div></button>
       </div>
 
       <div id="Container">
